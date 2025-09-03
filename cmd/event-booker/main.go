@@ -113,6 +113,11 @@ func main() {
 	}
 
 	log.Info("application stopped")
+
+	if err = storage.Close(); err != nil {
+		log.Error("failed to close postgres connection", sl.Err(err))
+	}
+
 	log.Info("postgres connection closed")
 }
 
