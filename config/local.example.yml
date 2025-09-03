@@ -1,0 +1,14 @@
+env: "local"
+
+database:
+  host: "db"
+  port: 5432
+  user: "event-booker-user"
+  password: "your_password"
+  dbname: "event_booker_db"
+  sslmode: "disable"
+
+http_server:
+  address: "0.0.0.0:8080"
+  timeout: 4s
+  idle_timeout: 60s

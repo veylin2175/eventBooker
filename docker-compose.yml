@@ -1,0 +1,42 @@
+services:
+
+  db:
+    image: postgres:15
+    container_name: event-booker-db
+    restart: always
+    environment:
+      POSTGRES_USER: event-booker-user
+      POSTGRES_PASSWORD: 3356
+      POSTGRES_DB: event_booker_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U event-booker-user -d event_booker_db" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    volumes:
+      - ./config:/app/config
+      - ./static:/app/static
+    environment:
+      CONFIG_PATH: "/app/config/local.yml"
+
+  migrate:
+    image: migrate/migrate
+    depends_on:
+      - db
+    command: [ "-path", "/migrations", "-database", "postgres://event-booker-user:3356@db:5432/event_booker_db?sslmode=disable", "up" ]
+    volumes:
+      - ./migrations:/migrations
+
+volumes:
+  db-data:

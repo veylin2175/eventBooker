@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Booker - Бронирование мероприятий</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header>
+    <h1>Event Booker</h1>
+    <nav>
+        <a href="/static/index.html" class="active">Пользователь</a>
+        <a href="/static/admin.html">Администратор</a>
+    </nav>
+</header>
+
+<main>
+    <section class="events-list">
+        <h2>Доступные мероприятия</h2>
+        <div id="events-container">
+            <!-- Список мероприятий будет загружаться сюда -->
+            <p class="loading">Загрузка мероприятий...</p>
+        </div>
+    </section>
+
+    <section class="booking-form" id="booking-section" style="display: none;">
+        <h2>Бронирование места</h2>
+        <form id="booking-form">
+            <input type="hidden" id="event-id" name="event-id">
+            <div class="form-group">
+                <label for="user-id">Ваш ID пользователя:</label>
+                <input type="text" id="user-id" name="user-id" required>
+            </div>
+            <button type="submit">Забронировать</button>
+        </form>
+    </section>
+
+    <section class="confirmation-form" id="confirmation-section" style="display: none;">
+        <h2>Подтверждение бронирования</h2>
+        <form id="confirmation-form">
+            <input type="hidden" id="confirm-event-id" name="confirm-event-id">
+            <div class="form-group">
+                <label for="confirm-user-id">Ваш ID пользователя:</label>
+                <input type="text" id="confirm-user-id" name="confirm-user-id" required>
+            </div>
+            <button type="submit">Подтвердить бронь</button>
+        </form>
+    </section>
+</main>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
