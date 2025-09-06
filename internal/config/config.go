@@ -16,14 +16,14 @@ type Config struct {
 type Database struct {
 	Host     string `yaml:"host" env-default:"db"`
 	Port     int    `yaml:"port" env-default:"5432"`
-	User     string `yaml:"user" env-default:"image-processor-user"`
+	User     string `yaml:"user" env-default:"event-booker-user"`
 	Password string `yaml:"password" env-required:"true"`
 	DBName   string `yaml:"dbname" env-required:"true"`
 	SSLMode  string `yaml:"sslmode" env-default:"disable"`
 }
 
 type HTTPServer struct {
-	Address     string        `yaml:"address" env-default:"localhost:8075"`
+	Address     string        `yaml:"address" env-default:"localhost:8080"`
 	Timeout     time.Duration `yaml:"timeout" env-default:"4s"`
 	IdleTimeout time.Duration `yaml:"idle_timeout" env-default:"60s"`
 }
