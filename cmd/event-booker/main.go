@@ -41,12 +41,6 @@ func main() {
 		log.Error("failed to init storage", sl.Err(err))
 		os.Exit(1)
 	}
-	defer func(storage *postgres.Storage) {
-		err = storage.Close()
-		if err != nil {
-			log.Error("failed to close postgres connection", sl.Err(err))
-		}
-	}(storage)
 
 	router := chi.NewRouter()
 
